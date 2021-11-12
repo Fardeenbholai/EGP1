@@ -47,7 +47,7 @@ public class Timermaze : MonoBehaviour
         }
         
         if (time < 1){//als de tijd voorbij is en het level niet is gehaald wordt de scene herladen.
-            SceneManager.LoadScene("maze");
+            SceneManager.LoadScene("maze");//laad scene.
         }
 
         }
