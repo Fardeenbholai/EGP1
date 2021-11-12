@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController controller;
     
-    public float speed = 12f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 3f;
+    public float speed = 12f;//snelheid van lopen.
+    public float gravity = -9.81f;//zwaartekracht.
+    public float jumpHeight = 3f;//springhoogte.
 
-    public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public Transform groundCheck;//checken of de grond wordt geraakt.
+    public float groundDistance = 0.4f;//afstand tot de grond.
     public LayerMask groundMask;
 
     Vector3 velocity;

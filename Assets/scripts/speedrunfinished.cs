@@ -7,9 +7,9 @@ public class speedrunfinished : MonoBehaviour
 {
   
     private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if (hit.collider.gameObject.tag == "pick_me"){
-            Destroy (hit.collider.gameObject);
-            SceneManager.LoadScene("questionsspeedrun");
+        if (hit.collider.gameObject.tag == "pick_me"){//als speler met object met tag "pick_me" collide.
+            Destroy (hit.collider.gameObject);//gameobject wordt verwijderd.
+            SceneManager.LoadScene("questionsspeedrun");//volgende scene wordt geladen.
 
         }
 

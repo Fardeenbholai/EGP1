@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;  //Library om ervoor te zorgen dat er overgang mogelijk is naar een andere scene.
+using UnityEngine.UI;               //Library om ervoor te zorgen dat er berichten naar de UI geschreven kunnen worden.
 public class collectObjectsoutdoor2 : MonoBehaviour
 {
     int score;
-    float endgame;
     GameObject hiddenPlane;
     int canscollected;
     bool startTimer;
@@ -15,52 +14,49 @@ public class collectObjectsoutdoor2 : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit) {
         string objectthatwearecollidingwith = hit.collider.name;
         string tagoftheobject = hit.collider.tag;
-        if (tagoftheobject == "plane"){
-            if(canscollected<4){
+        if (tagoftheobject == "plane"){ //interactie met het vliegtuig.
+            if(canscollected<4){//wanneer interactie met het vliegtuig plaatsvind en je niet de vaten hebt opgepakt komt er een bericht in de UI.
                 GameObject.Find("usermessageUI").GetComponent<Text>().text = "sorry you need 4 cans!";
-                startTimer = true;
+                startTimer = true;//Bool om bericht in de UI te kunnen verwijderen.
             }
             else{
-                hiddenPlane.SetActive(true);
-                GameObject.Find("plane").SetActive(false);  
-                gameObject.SetActive(false);
+                hiddenPlane.SetActive(true);//tweede vliegtuig wordt actief.
+                GameObject.Find("plane").SetActive(false);  //eerste vliegtuig wordt gedeactiveerd.
+                gameObject.SetActive(false);//FPScontroller wordt uitgeschakeld anders kan er niet gevlogen worden.
                
                 
 
             }
         }
-        if (tagoftheobject == "pick_me"){
-            canscollected = canscollected + 1;
-            Destroy(hit.collider.gameObject);
-            print("collected" + canscollected + "cans");
-            GameObject.Find("usermessageUI").GetComponent<Text>().text = "you have collected" + " " + canscollected + " " + "can(s)";
+        if (tagoftheobject == "pick_me"){//Oppakken van de vaten.
+            canscollected = canscollected + 1;//Score bijhouden.
+            Destroy(hit.collider.gameObject);//Collision met gameobject.
+            print("collected" + canscollected + "cans");//Print naar de Console.
+            GameObject.Find("usermessageUI").GetComponent<Text>().text = "you have collected" + " " + canscollected + " " + "can(s)";//Geeft dit bericht in de UI weer.
         }
         //
     }
     // Start is called before the first frame update
     void Start()
     {
-        endgame = 0;
-        timer = 0;  
-        score = 0;
-        canscollected = 0;
-        //startDeleteMessage = false;
-        GameObject.Find("usermessageUI").GetComponent<Text>().text = "";
-        hiddenPlane = GameObject.Find("hiddenplane");
-        hiddenPlane.SetActive(false);
-        //GameObject.Find("scoreUI").GetComponent<Text>().text = "Score: " + score;
-        //score = 0;
+        timer = 0;//timer bijhouden wanneer UI bericht verwijderd moet worden.
+        score = 0;//score bijhouden voor de vaten.
+        canscollected = 0;//aantal vaten bijhouden.
+        GameObject.Find("usermessageUI").GetComponent<Text>().text = "";//UI bij start van de game leegmaken.
+        hiddenPlane = GameObject.Find("hiddenplane");//tag van gameobject van het vliegtuig.
+        hiddenPlane.SetActive(false);//Vliegtuig bij het begin als inactive zetten zodat deze niet direct wegvliegt.
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (startTimer){
-            timer = timer + Time.deltaTime;
-            if(timer>=3){
-                GameObject.Find("usermessageUI").GetComponent<Text>().text = "";
-                startTimer = false;
-                timer = 0;
+        if (startTimer){//Bool is true.
+            timer = timer + Time.deltaTime;//telt timer op.
+            if(timer>=3){//timer heeft waarde boven of gelijk aan 3 bereikt.
+                GameObject.Find("usermessageUI").GetComponent<Text>().text = "";//UI wordt vervolgens weer leeggemaakt zodat er geen bericht meer is.
+                startTimer = false;//Timer wordt vervolgens weer op false gezet.
+                timer = 0;//Timer wordt weer terug naar 0 gezet.
                 
             }
         }

@@ -8,12 +8,12 @@ public class rotatecoin : MonoBehaviour
     private int rotatespeed;
     void Start()
     {
-        rotatespeed = 5;
+        rotatespeed = 5;//rotatiesnelheid.
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0,rotatespeed,0,Space.World);
+        transform.Rotate(0,rotatespeed,0,Space.World);//munt draait.
     }
 }

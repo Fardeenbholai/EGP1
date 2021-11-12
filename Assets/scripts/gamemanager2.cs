@@ -9,11 +9,11 @@ public class gamemanager2 : MonoBehaviour
     public GameObject[] Levels;
     int currentlevel;
     public void correctAnswer(){
-        if (currentlevel + 1 != Levels.Length){
-            Levels[currentlevel].SetActive(false);
-            currentlevel++;
-            Levels[currentlevel].SetActive(true); 
-            if (currentlevel == 3){
+        if (currentlevel + 1 != Levels.Length){//level is ongelijk aan de lengte van de levels.
+            Levels[currentlevel].SetActive(false);//Vraag 1 in de quiz wordt op false gezet nadat hij beantwoord is.
+            currentlevel++;//vervolgens waarde opgehoogd.
+            Levels[currentlevel].SetActive(true);//de tweede vraag in de quiz wordt nu weergeven.
+            if (currentlevel == 3){//wanneer alle vragen zijn beantwoord mag je naar de volgende level gaan.
             SceneManager.LoadScene("Speedrun");
         }
         }
